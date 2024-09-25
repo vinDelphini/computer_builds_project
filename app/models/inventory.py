@@ -1,8 +1,14 @@
 """Inventory Models"""
 
 import sys
-sys.path.append('/home/vin/OOP_object_oriented_programming/3_computer_builds/app/utils')
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+utils_path = os.path.join(current_dir, '..', 'utils')
+sys.path.append(utils_path)
+
 from validators import validate_integer
+
 
 class Resource:
 

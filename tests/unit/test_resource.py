@@ -5,7 +5,12 @@ Command line: python3 -m pytest tests/unit/test_resource.py
 
 import pytest
 import sys
-sys.path.append('/home/vin/OOP_object_oriented_programming/3_computer_builds/app/models')
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+models_path = os.path.join(current_dir, '..', '..', 'app', 'models')
+sys.path.append(models_path)
+
 from inventory import Resource
 
 

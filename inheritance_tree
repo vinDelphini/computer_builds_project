@@ -1,0 +1,19 @@
+// Class Inheritance Tree
+digraph {
+	graph [rankdir=LR]
+	node [color=lightblue fontname=Arial fontsize=12 shape=box style=filled]
+	edge [arrowhead=open color=gray style=line]
+	Resource [label=Resource color=lightgreen]
+	CPU [label=CPU color=lightgreen]
+	Resource [label=Resource color=lightcoral]
+	Resource -> CPU [label=inherits]
+	Storage [label=Storage color=lightgreen]
+	Resource [label=Resource color=lightcoral]
+	Resource -> Storage [label=inherits]
+	HDD [label=HDD color=lightgreen]
+	Storage [label=Storage color=lightcoral]
+	Storage -> HDD [label=inherits]
+	SSD [label=SSD color=lightgreen]
+	Storage [label=Storage color=lightcoral]
+	Storage -> SSD [label=inherits]
+}

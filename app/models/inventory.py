@@ -7,7 +7,7 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 utils_path = os.path.join(current_dir, '..', 'utils')
 sys.path.append(utils_path)
 
-from validators import validate_integer
+from validators import validate_integer, validate_string
 
 
 class Resource:
@@ -173,6 +173,7 @@ class SSD(Storage):
         interface
         ):
         super().__init__(name, manufacturer, total, allocated, capacity_gb)
+        validate_string("interface", interface, "Must be a valid interface name.")
         self._interface = interface
 
     @property

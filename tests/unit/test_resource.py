@@ -31,13 +31,12 @@ def test_create_resource(resource_values, resource):
     for attr_name in resource_values:
         assert getattr(resource, attr_name) == resource_values.get(attr_name)
 
-def test_create_invalid_total_type():
-    with pytest.raises(TypeError):
-        Resource("Parrot", "Pirates A-Hoy", 10.5, 5)
+@pytest.mark.parametrize("total, exception", [(10.5, TypeError), (-10, ValueError)])
+def test_create_invalid_total(total, exception, resource_values):
+    resource_values["total"] = total
+    with pytest.raises(exception):
+        Resource(**resource_values)
 
-def test_create_invalid_total_value():
-    with pytest.raises(ValueError):
-        Resource("name", "manu", -10, 0)
 
 @pytest.mark.parametrize("total, allocated", [(10, -5), (10, 20)])
 def test_create_invalid_allocated_value(total, allocated):

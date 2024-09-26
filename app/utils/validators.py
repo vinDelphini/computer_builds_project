@@ -17,5 +17,9 @@ def validate_integer(
             raise ValueError(custom_max_message)
         raise ValueError(f"{arg_name} cannot be greater than {max_value}") 
 
+def validate_string(arg_name, arg_value, custom_error_message=None):
+    if not isinstance(arg_value, str):
+        raise TypeError(f"{arg_name} must be a string.")
+        
 # a = validate_integer("total", -10, 0, 20, custom_max_message="cannot exceed 20")
 # print(a)

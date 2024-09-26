@@ -11,18 +11,24 @@ current_dir = os.path.dirname(os.path.abspath(__file__))
 utils_path = os.path.join(current_dir, '..', '..', 'app', 'utils')
 sys.path.append(utils_path)
 
-from validators import validate_integer
+from validators import validate_integer, validate_string
 
 
 class TestIntegerValidator:
 
     def test_valid(self):
         validate_integer("arg", 10, 0, 20, "custom min message", "custom max message")
-    
-    def test_type_error(self):
+        validate_string("arg", "matter", "custom error message")
+
+    def test_type_error_int(self):
         with pytest.raises(TypeError):
             validate_integer('arg', 1.5)
     
+    @pytest.mark.parametrize("arg", [1, 20.2, True])
+    def test_type_error_str(self, arg):
+        with pytest.raises(TypeError):
+            validate_string("arg_name", arg)
+
     def test_min_std_err_msg(self):
         with pytest.raises(ValueError) as ex:
             validate_integer("arg", 10, 100)
